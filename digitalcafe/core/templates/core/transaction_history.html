@@ -1,0 +1,25 @@
+<h1>Transaction history</h1>
+<a href="/">Back to products</a>
+<p>Hi, {{ user.username }}!</p>
+
+{% if history %}
+    {% for entry in history %}
+        <h4>{{ entry.created_at }}</h4>
+        {% if lineitems %}
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                </tr>
+                {% for item in lineitems %}
+                    {% if entry == item.transaction %}
+                        <tr>
+                            <td>{{ item.product }}</td>
+                            <td>{{ item.quantity }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% endfor %}
+{% endif %}
